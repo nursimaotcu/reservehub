@@ -1,0 +1,36 @@
+@base = http://localhost:5080
+@token = paste-access-token-here
+@roomId = paste-room-id-here
+
+### Register a local demo user
+POST {{base}}/api/auth/register
+Content-Type: application/json
+
+{"email":"demo@example.test","password":"Local-demo-password-123!"}
+
+### Log in
+POST {{base}}/api/auth/login
+Content-Type: application/json
+
+{"email":"demo@example.test","password":"Local-demo-password-123!"}
+
+### List rooms
+GET {{base}}/api/rooms/
+
+### Create a room: use the admin access token
+POST {{base}}/api/rooms/
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"name":"Toplanti Odasi","capacity":6}
+
+### Book: replace dates with a future interval within 90 days
+POST {{base}}/api/bookings/
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"roomId":"{{roomId}}","start":"2026-10-01T14:00:00+03:00","end":"2026-10-01T15:00:00+03:00"}
+
+### My bookings
+GET {{base}}/api/bookings/
+Authorization: Bearer {{token}}

@@ -1,0 +1,39 @@
+services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: reservehub
+      POSTGRES_USER: reservehub
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Run scripts/setup.ps1 first}
+    ports:
+      - "127.0.0.1:54329:5432"
+    volumes:
+      - database:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U reservehub -d reservehub"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  migrate:
+    build: .
+    command: ["--migrate"]
+    environment: &api-env
+      ConnectionStrings__Database: Host=db;Database=reservehub;Username=reservehub;Password=${DB_PASSWORD}
+      Jwt__Key: ${JWT_KEY:?Run scripts/setup.ps1 first}
+      Bootstrap__Email: ${ADMIN_EMAIL}
+      Bootstrap__Password: ${ADMIN_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+  api:
+    build: .
+    environment:
+      <<: *api-env
+      ASPNETCORE_URLS: http://+:8080
+    ports:
+      - "127.0.0.1:5080:8080"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+volumes:
+  database:
