@@ -76,6 +76,6 @@ Rezervasyon başlangıcı gelecekte ve en fazla 90 gün ileride olmalı; süre e
 
 Bu sürüm yerel demo ve öğrenme amaçlıdır. E-posta doğrulama, parola sıfırlama, refresh token, ödeme, çoklu işletme ve arayüz içermez. İnternete açılacak kurulumda HTTPS ve dağıtık istek sınırlama ayrıca ele alınmalıdır. Redis ve mesaj kuyruğu henüz kullanılmıyor.
 
-Release derlemesi ve gerçek PostgreSQL üzerindeki HTTP testleri geçti. Docker çalıştırması ve GitHub Actions sonucu bu ortamda doğrulanmadı; ayrıntılar [doğrulama notlarında](docs/validation.md).
+Release derlemesi ve gerçek PostgreSQL üzerindeki HTTP testleri geçti. Docker kurulumu ve GitHub Actions kontrolleri de geçti; ayrıntılar [doğrulama notlarında](docs/validation.md).
 
 Öğrenme sırası için [çalışma rehberini](docs/learning-guide.md), tasarım gerekçeleri için [mimari notlarını](docs/architecture.md) kullanabilirsiniz.
