@@ -1,8 +1,12 @@
 # ReserveHub
 
+[![CI](https://github.com/nursimaotcu/reservehub/actions/workflows/ci.yml/badge.svg)](https://github.com/nursimaotcu/reservehub/actions/workflows/ci.yml)
+
 Çalışma alanları ve toplantı odaları için geliştirdiğim rezervasyon API'si. Backend temellerini tek bir uygulamada bir araya getiriyorum: HTTP, ilişkisel veri modeli, kullanıcı girişi, yetkilendirme, veri doğrulama ve eşzamanlı istekler.
 
 Örneğin iki kişi aynı odanın 14.00–15.00 aralığını aynı anda ayırtmaya çalıştığında yalnızca bir rezervasyon kaydedilir. Diğer istek `409 Conflict` yanıtı alır. Bu kural PostgreSQL'de de uygulanır.
+
+Docker kurulumu ve gerçek PostgreSQL üzerinde HTTP entegrasyon testleri [GitHub Actions koşusunda](https://github.com/nursimaotcu/reservehub/actions/runs/34699822971) geçti.
 
 ## Teknolojiler
 
